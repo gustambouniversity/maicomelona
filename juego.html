@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MAI COMELONA</title>
+
+<link rel="icon" href="icono.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+overflow:hidden;
+font-family:'Fredoka',sans-serif;
+background:url("fondo.jpg") center/cover no-repeat;
+height:100vh;
+color:white;
+}
+
+/* SPLASH */
+
+#splash{
+position:fixed;
+width:100%;
+height:100%;
+z-index:9999;
+}
+
+#splash img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+/* MENU */
+
+#menu{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+text-align:center;
+display:none;
+}
+
+#logo{
+width:300px;
+max-width:80vw;
+margin-bottom:30px;
+}
+
+/* BOTONES */
+
+.menuBtn{
+display:block;
+margin:12px auto;
+width:220px;
+padding:15px;
+font-size:18px;
+border:none;
+border-radius:14px;
+background:linear-gradient(#ff7ac8,#ff4fa0);
+color:white;
+box-shadow:0 6px #b03070;
+cursor:pointer;
+}
+
+/* MINI MENU */
+
+#gear{
+position:fixed;
+top:15px;
+right:15px;
+font-size:28px;
+background:#0009;
+padding:8px 12px;
+border-radius:10px;
+cursor:pointer;
+z-index:10;
+}
+
+#settings{
+display:none;
+position:fixed;
+top:60px;
+right:15px;
+width:220px;
+background:#111;
+border-radius:12px;
+padding:15px;
+}
+
+/* SCORE */
+
+#scoreBox{
+position:absolute;
+top:20px;
+left:50%;
+transform:translateX(-50%);
+background:#000a;
+padding:10px 20px;
+border-radius:10px;
+}
+
+/* PROGRESS */
+
+#progressBar{
+position:absolute;
+top:60px;
+left:50%;
+transform:translateX(-50%);
+width:70%;
+height:16px;
+background:#333;
+border-radius:10px;
+}
+
+#progress{
+height:100%;
+width:0%;
+background:#ff6fb5;
+border-radius:10px;
+}
+
+#cakeIcon{
+position:absolute;
+top:-18px;
+right:-10px;
+font-size:22px;
+}
+
+/* MAI */
+
+#mai{
+position:absolute;
+bottom:40px;
+left:50%;
+transform:translateX(-50%);
+width:120px;
+height:140px;
+}
+
+.head{
+width:85px;
+height:85px;
+background:#8a4b2a;
+border-radius:50%;
+margin:auto;
+position:relative;
+}
+
+.eye{
+width:10px;
+height:10px;
+background:black;
+border-radius:50%;
+position:absolute;
+top:30px;
+}
+
+.eye.left{left:20px}
+.eye.right{right:20px}
+
+.mouth{
+width:28px;
+height:8px;
+background:#300;
+border-radius:10px;
+position:absolute;
+bottom:15px;
+left:50%;
+transform:translateX(-50%);
+}
+
+.body{
+width:110px;
+height:50px;
+background:#ff7fc0;
+border-radius:25px;
+margin:auto;
+margin-top:-10px;
+}
+
+/* PASTEL */
+
+.cake{
+position:absolute;
+width:50px;
+height:60px;
+}
+
+.cake-base{
+width:50px;
+height:20px;
+background:#ff9ecb;
+border-radius:6px;
+position:absolute;
+bottom:0;
+}
+
+.cake-cream{
+width:50px;
+height:14px;
+background:white;
+border-radius:6px;
+position:absolute;
+bottom:20px;
+}
+
+.candle{
+position:absolute;
+width:4px;
+height:16px;
+background:yellow;
+left:23px;
+bottom:34px;
+}
+
+.flame{
+position:absolute;
+width:8px;
+height:8px;
+background:orange;
+border-radius:50%;
+left:21px;
+bottom:50px;
+animation:flicker .4s infinite alternate;
+}
+
+@keyframes flicker{
+0%{transform:scale(1)}
+100%{transform:scale(1.3)}
+}
+
+/* REFRESCO */
+
+.soda{
+position:absolute;
+width:40px;
+height:60px;
+}
+
+.soda-body{
+width:35px;
+height:50px;
+background:#6ec5ff;
+border-radius:6px;
+position:absolute;
+bottom:0;
+}
+
+.straw{
+position:absolute;
+width:4px;
+height:20px;
+background:red;
+left:18px;
+top:-15px;
+}
+
+.bubble{
+position:absolute;
+width:6px;
+height:6px;
+background:white;
+border-radius:50%;
+animation:bubble 2s infinite;
+}
+
+@keyframes bubble{
+0%{transform:translateY(0);opacity:1}
+100%{transform:translateY(-30px);opacity:0}
+}
+
+/* TEXTO BODRIA */
+
+.badText{
+position:absolute;
+color:red;
+font-size:22px;
+font-weight:bold;
+animation:bad 1s forwards;
+}
+
+@keyframes bad{
+0%{opacity:1}
+100%{opacity:0;transform:translateY(-40px)}
+}
+
+/* REGALO */
+
+#gift{
+display:none;
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:#000c;
+padding:20px;
+border-radius:14px;
+text-align:center;
+}
+
+#gift img{
+width:200px;
+border-radius:10px;
+}
+
+/* CREDITOS */
+
+#credits{
+display:none;
+text-align:center;
+padding-top:80px;
+}
+
+#credits img{
+width:200px;
+border-radius:10px;
+margin-bottom:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="splash">
+<img src="splash.jpg">
+</div>
+
+<div id="gear" onclick="toggleSettings()">⚙</div>
+
+<div id="settings">
+
+<button onclick="setLang('es')">Español</button>
+<button onclick="setLang('ar')">العربية</button>
+<button onclick="setLang('oa')">Oaxaqueño</button>
+
+<hr>
+
+<button onclick="toggleMusic()">Música</button>
+<button onclick="toggleSound()">Sonido</button>
+<button onclick="backMenu()">Menú principal</button>
+
+</div>
+
+<div id="menu">
+
+<img id="logo" src="logo.png">
+
+<button id="playBtn" class="menuBtn" onclick="startGame()">JUGAR</button>
+<button class="menuBtn" onclick="showCredits()">CRÉDITOS</button>
+
+</div>
+
+<div id="credits">
+
+<img src="creditos.jpg">
+
+<p>
+created by lechugo and gustambouniversity<br>
+derechos reservados 2027
+</p>
+
+<button class="menuBtn" onclick="backMenu()">VOLVER</button>
+
+</div>
+
+<div id="game">
+
+<div id="scoreBox">0 / 50</div>
+
+<div id="progressBar">
+<div id="progress"></div>
+<div id="cakeIcon">🎂</div>
+</div>
+
+<div id="mai">
+<div class="head">
+<div class="eye left"></div>
+<div class="eye right"></div>
+<div class="mouth"></div>
+</div>
+<div class="body"></div>
+</div>
+
+</div>
+
+<div id="gift">
+
+<h2>
+felis cumpleaños mai<br>
+de parte de lechugo y cyan :3
+</h2>
+
+<img src="foto_mai.jpg">
+
+</div>
+
+<audio id="music" src="music.mp3" loop></audio>
+<audio id="eatSound" src="eat.mp3"></audio>
+
+<script>
+
+setTimeout(()=>{
+splash.style.display="none"
+menu.style.display="block"
+},5000)
+
+let score=0
+let sodaCount=0
+
+const music=document.getElementById("music")
+const eatSound=document.getElementById("eatSound")
+
+music.volume=0.3
+
+function toggleSettings(){
+settings.style.display=settings.style.display=="block"?"none":"block"
+}
+
+function toggleMusic(){
+music.paused?music.play():music.pause()
+}
+
+function toggleSound(){
+eatSound.muted=!eatSound.muted
+}
+
+function startGame(){
+menu.style.display="none"
+game.style.display="block"
+music.play()
+spawnObjects()
+}
+
+function backMenu(){
+game.style.display="none"
+credits.style.display="none"
+menu.style.display="block"
+}
+
+function showCredits(){
+menu.style.display="none"
+credits.style.display="block"
+}
+
+function setLang(l){
+
+if(l=="es"){
+playBtn.innerText="JUGAR"
+}
+
+if(l=="ar"){
+document.body.dir="rtl"
+playBtn.innerText="لعب"
+}
+
+if(l=="oa"){
+playBtn.innerText="JUGAR"
+}
+
+}
+
+/* TEXTO BODRIA */
+
+function showBad(x,y){
+
+let text=document.createElement("div")
+
+text.className="badText"
+text.innerText="eres bodria"
+
+text.style.left=x+"px"
+text.style.top=y+"px"
+
+document.body.appendChild(text)
+
+setTimeout(()=>text.remove(),1000)
+
+}
+
+/* SPAWN */
+
+function spawnObjects(){
+
+setInterval(()=>{
+
+let obj
+
+let soda=Math.random()<0.2 && sodaCount<10
+
+if(soda){
+
+obj=document.createElement("div")
+obj.className="soda"
+
+obj.innerHTML=`
+<div class="soda-body"></div>
+<div class="straw"></div>
+<div class="bubble" style="left:10px"></div>
+<div class="bubble" style="left:20px"></div>
+`
+
+obj.dataset.points=5
+
+sodaCount++
+
+}else{
+
+obj=document.createElement("div")
+obj.className="cake"
+
+obj.innerHTML=`
+<div class="cake-base"></div>
+<div class="cake-cream"></div>
+<div class="candle"></div>
+<div class="flame"></div>
+`
+
+obj.dataset.points=1
+
+}
+
+obj.style.left=Math.random()*window.innerWidth+"px"
+obj.style.top="-60px"
+
+document.body.appendChild(obj)
+
+let fall=setInterval(()=>{
+
+let y=parseInt(obj.style.top)||0
+
+obj.style.top=y+2+"px"
+
+checkCatch(obj)
+
+if(y>window.innerHeight){
+
+if(obj.className=="cake"){
+showBad(obj.offsetLeft,obj.offsetTop)
+}
+
+obj.remove()
+
+clearInterval(fall)
+
+}
+
+},30)
+
+},1400)
+
+}
+
+function checkCatch(obj){
+
+let rect=obj.getBoundingClientRect()
+let zone=mai.getBoundingClientRect()
+
+if(rect.bottom>zone.top && rect.left<zone.right && rect.right>zone.left){
+
+let points=parseInt(obj.dataset.points)
+
+score+=points
+
+scoreBox.innerText=score+" / 50"
+
+progress.style.width=(score*2)+"%"
+
+eatSound.currentTime=0
+eatSound.play()
+
+obj.remove()
+
+if(score>=50){
+gift.style.display="block"
+}
+
+}
+
+}
+
+document.addEventListener("mousemove",(e)=>{
+mai.style.left=e.clientX-60+"px"
+})
+
+document.addEventListener("touchmove",(e)=>{
+mai.style.left=e.touches[0].clientX-60+"px"
+})
+
+</script>
+
+</body>
+</html>
